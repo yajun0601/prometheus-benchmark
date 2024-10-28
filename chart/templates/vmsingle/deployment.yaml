@@ -27,7 +27,7 @@ spec:
       serviceAccount: {{ include "prometheus-benchmark.fullname" . }}-vmsingle
       containers:
       - name: vmsingle
-        image: "victoriametrics/victoria-metrics:{{ .Values.vmtag }}"
+        image: "swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/victoriametrics/victoria-metrics:v1.95.1"
         args:
         - --httpListenAddr=:8428
         - --promscrape.config=/config/scrape.yml

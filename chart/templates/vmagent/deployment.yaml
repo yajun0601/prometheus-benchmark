@@ -30,7 +30,7 @@ spec:
       {{- end }}
       containers:
       - name: vmagent-config-updater
-        image: "victoriametrics/vmagent-config-updater:v1.1.0"
+        image: "swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/victoriametrics/vmagent-config-updater:v1.1.0"
         args:
         - --httpListenAddr=:8436
         - --targetsCount={{ $.Values.targetsCount }}
@@ -45,7 +45,7 @@ spec:
             memory: {{ $.Values.writeReplicaMem }}
           limits:
             memory: {{ $.Values.writeReplicaMem }}
-        image: "victoriametrics/vmagent:{{ $.Values.vmtag }}"
+        image: "swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/victoriametrics/vmagent:v1.91.3"
         args:
         - --httpListenAddr=:8429
         - --remoteWrite.showURL
@@ -78,7 +78,7 @@ spec:
         - mountPath: /vmagent-data
           name: vmagent-data
       - name: nodeexporter
-        image: prom/node-exporter:v1.4.0
+        image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/quay.io/prometheus/node-exporter:v1.6.0
         args:
           - --path.procfs=/host/proc
           - --path.sysfs=/host/sys
@@ -106,7 +106,7 @@ spec:
           - containerPort: 9101
             name: metrics
       - name: nginx
-        image: nginx:1.23.1
+        image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/nginx:1.27.0
         args:
           - nginx
           - -c
